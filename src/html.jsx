@@ -19,7 +19,7 @@ export default class HTML extends React.Component {
           />
           {this.props.headComponents}
         </head>
-        <body {...this.props.bodyAttributes} className="light">
+        <body {...this.props.bodyAttributes} className="gradient-container">
           {this.props.preBodyComponents}
           <div
             key="body"

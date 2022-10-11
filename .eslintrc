@@ -7,5 +7,9 @@
     "window": true,
     "FormData": true,
     "fetch": true
-  }
+  },
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "parser": "babel-eslint"
 }

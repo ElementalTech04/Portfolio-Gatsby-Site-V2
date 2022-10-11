@@ -27,12 +27,6 @@ module.exports = [
     },
   },
   {
-    resolve: `gatsby-plugin-disqus`,
-    options: {
-        shortname: `frankierodriguez`
-    }
-  },
-  {
     resolve: 'gatsby-source-filesystem',
     options: {
       name: 'markdown-pages',
