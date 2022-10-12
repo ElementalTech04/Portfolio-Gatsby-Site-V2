@@ -11,7 +11,7 @@ module.exports = {
     blog: 'blog',
     contact: 'contact',
     resume: 'resume',
-    tag: 'tags',
+    project: 'projects',
   },
   social: {
     github: 'https://github.com/travistech04',
@@ -21,4 +21,16 @@ module.exports = {
   },
   contactFormUrl: process.env.CONTACT_FORM_ENDPOINT || 'https://getform.io/f/09a3066f-c638-40db-ad59-05e4ed71e451',
   googleAnalyticTrackingId: process.env.GA_TRACKING_ID || '',
+  projects:{
+    portfoliov1: {
+      name: 'Dev Site V1',
+      description: 'JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.',
+      color: '#f0da50',
+    },
+    portfoliov2: {
+      name: 'Dev Site V2',
+      description: 'JavaScript is an object-oriented programming language used alongside HTML and CSS to give functionality to web pages.',
+      color: '#f0da50',
+    },
+  },
 };

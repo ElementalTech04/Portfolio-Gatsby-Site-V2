@@ -1,4 +1,4 @@
-export const stripTags = (ipStr) => {
+export const stripProjects = (ipStr) => {
   let str = ipStr;
   if ((str === null) || (str === '')) {
     return false;

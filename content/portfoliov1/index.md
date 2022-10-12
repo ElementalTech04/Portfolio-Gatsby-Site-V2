@@ -1,9 +1,7 @@
 ---
 title: "Hello World - Frankie's First Post"
-path: blog/hello-world
-tags: [javascript, html,css]
+path: projects/portfoliov1
 cover: ./frankie.jpg
-date: 2021-08-20
 excerpt: Here starts my developer portfolio blog series. I plan to write about different technologies I have/will encounter throughout my journey, struggles in learning, memes, and everything in between.
 ---
 

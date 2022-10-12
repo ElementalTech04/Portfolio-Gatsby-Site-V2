@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col } from 'antd';
 import AboutTile from '../../AboutTile';
-import { stripTags, domHtml } from '../../../utils/stripTags';
+import { stripProjects, domHtml } from '../../../utils/stripProjects';
 
 import SEO from '../../Seo';
 
@@ -11,7 +11,7 @@ const pageText = {
 };
 
 const AboutMe = () => {
-  const description = `${pageText.paraOne} ${stripTags(pageText.paraTwo)}`;
+  const description = `${pageText.paraOne} ${stripProjects(pageText.paraTwo)}`;
   return (
     <>
       <div>

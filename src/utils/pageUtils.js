@@ -38,17 +38,17 @@ const Utils = {
    * @return {Array} The `postList` object sorted according to the best match with the `post` object
    */
   getSuggestedPosts: (post, postList, limit) => {
-    // Get the number of common tags with provided post.
-    const getTagScore = (edge) => {
-      let commonTags = 0;
-      edge.node.frontmatter.tags.forEach((tag) => {
-        commonTags += post.frontmatter.tags.indexOf(tag) !== -1 ? 1 : 0;
+    // Get the number of common projects with provided post.
+    const getProjectScore = (edge) => {
+      let commonProjects = 0;
+      edge.node.frontmatter.projects.forEach((project) => {
+        commonProjects += post.frontmatter.projects.indexOf(project) !== -1 ? 1 : 0;
       });
-      return commonTags;
+      return commonProjects;
     };
 
     return postList.edges
-      .sort((edgeA, edgeB) => getTagScore(edgeB) - getTagScore(edgeA))
+      .sort((edgeA, edgeB) => getProjectScore(edgeB) - getProjectScore(edgeA))
       .slice(0, limit);
   },
   /**

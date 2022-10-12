@@ -57,7 +57,6 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "DD MMM YYYY")
-        tags
         path
         excerpt
         cover {
@@ -80,7 +79,6 @@ export const pageQuery = graphql`
           frontmatter {
             path
             title
-            tags
             excerpt
             cover {
               childImageSharp {

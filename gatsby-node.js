@@ -14,7 +14,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             frontmatter {
               path
-              tags
+              projects
             }
             fileAbsolutePath
           }
@@ -48,21 +48,21 @@ exports.createPages = ({ actions, graphql }) => {
     const defaultPosts = allMarkdownRemark.edges
       .filter(({ node: { fileAbsolutePath } }) => fileAbsolutePath.match(regexForIndex));
 
-    /* Tag pages */
-    const allTags = [];
+    /* project pages */
+    const allProjects = [];
     defaultPosts.forEach(({ node }) => {
-      node.frontmatter.tags.forEach((tag) => {
-        if (allTags.indexOf(tag) === -1) allTags.push(tag);
+      node.frontmatter.projects.forEach((project) => {
+        if (allProjects.indexOf(project) === -1) allProjects.push(project);
       });
     });
 
-    allTags
-      .forEach((tag) => {
+    allProjects
+      .forEach((project) => {
         createPage({
-          path: utils.resolvePageUrl(config.pages.tag, tag),
-          component: path.resolve('src/templates/tags/index.jsx'),
+          path: utils.resolvePageUrl(config.pages.project, project),
+          component: path.resolve('src/templates/projects/index.jsx'),
           context: {
-            tag,
+            project,
           },
         });
       });

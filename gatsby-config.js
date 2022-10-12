@@ -15,5 +15,5 @@ module.exports = {
     title: config.siteTitle,
     description: config.siteDescription,
   },
-  plugins,
+  plugins
 };

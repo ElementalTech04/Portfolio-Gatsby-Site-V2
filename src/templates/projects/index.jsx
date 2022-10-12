@@ -14,53 +14,53 @@ import PostCard from '../../components/PostCard';
 import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import Config from '../../../config';
 import Utils from '../../utils/pageUtils';
-import style from './tags.module.less';
+import style from './projects.module.less';
 
-const TagPage = ({ data, pageContext }) => {
-  const { tag } = pageContext;
-  const tagName = Config.tags[tag].name || Utils.capitalize(tag);
-  const tagPagePath = Config.pages.tag;
-  const tagImage = data.allFile.edges.find((edge) => edge.node.name === tag).node
-    .childImageSharp.fluid;
-  const posts = data.allMarkdownRemark.edges;
-  return (
-    <Layout className="outerPadding">
-      <Layout className="container">
-        <Header />
-        <SEO
-          title={tagName}
-          description={`All post about ${tagName}. ${Config.tags[tag].description} `}
-          path={Utils.resolvePageUrl(tagPagePath, tag)}
-          keywords={[tagName]}
-        />
-        <SidebarWrapper>
-          <div className={`marginTopTitle ${style.tagsList}`}>
-            <h1>
-              #
-              {tagName}
-            </h1>
-            <div className={style.bannerImgContainer}>
-              <Img className={style.bannerImg} fluid={tagImage} alt={tagName} />
-            </div>
-            <h4 className="textCenter">
-              {Config.tags[tag].description}
-            </h4>
-          </div>
-          <Row gutter={[20, 20]}>
-            {posts.map((post, key) => (
-            // eslint-disable-next-line react/no-array-index-key
-              <Col key={key} xs={24} sm={24} md={12} lg={8}>
-                <PostCard data={post} />
-              </Col>
-            ))}
-          </Row>
-        </SidebarWrapper>
-      </Layout>
-    </Layout>
-  );
+const ProjectPage = ({ data, pageContext }) => {
+  // const { project } = pageContext;
+  // const projectName = Config.projects[project].name || Utils.capitalize(project);
+  // const projectPagePath = Config.pages.project;
+  // const projectImage = data.allFile.edges.find((edge) => edge.node.name === project).node
+  //   .childImageSharp.fluid;
+  // const posts = data.allMarkdownRemark.edges;
+  // return (
+  //   <Layout className="outerPadding">
+  //     <Layout className="container">
+  //       <Header />
+  //       <SEO
+  //         title={projectName}
+  //         description={`All post about ${projectName}. ${Config.projects[project].description} `}
+  //         path={Utils.resolvePageUrl(projectPagePath, project)}
+  //         keywords={[projectName]}
+  //       />
+  //       <SidebarWrapper>
+  //         <div className={`marginTopTitle ${style.projectsList}`}>
+  //           <h1>
+  //             #
+  //             {projectName}
+  //           </h1>
+  //           <div className={style.bannerImgContainer}>
+  //             <Img className={style.bannerImg} fluid={projectImage} alt={projectName} />
+  //           </div>
+  //           <h4 className="textCenter">
+  //             {Config.projects[project].description}
+  //           </h4>
+  //         </div>
+  //         <Row gutter={[20, 20]}>
+  //           {posts.map((post, key) => (
+  //           // eslint-disable-next-line react/no-array-index-key
+  //             <Col key={key} xs={24} sm={24} md={12} lg={8}>
+  //               <PostCard data={post} />
+  //             </Col>
+  //           ))}
+  //         </Row>
+  //       </SidebarWrapper>
+  //     </Layout>
+  //   </Layout>
+  // );
 };
 
-TagPage.propTypes = {
+ProjectPage.propTypes = {
   data: PropTypes.shape({
     allMarkdownRemark: PropTypes.shape({
       edges: PropTypes.arrayOf(PropTypes.object).isRequired,
@@ -79,15 +79,14 @@ TagPage.propTypes = {
     }).isRequired,
   }).isRequired,
   pageContext: PropTypes.shape({
-    tag: PropTypes.string.isRequired,
+    project: PropTypes.string.isRequired,
   }).isRequired,
 };
 
 export const pageQuery = graphql`
-  query($tag: String!) {
+  query($project: String!) {
     allMarkdownRemark(
       filter: {
-        frontmatter: { tags: { in: [$tag] } }
         fileAbsolutePath: { regex: "/index.md$/" }
       }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -98,7 +97,6 @@ export const pageQuery = graphql`
             title
             date(formatString: "MMMM DD, YYYY")
             path
-            tags
             excerpt
             cover {
               childImageSharp {
@@ -111,7 +109,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allFile(filter: { name: { eq: $tag }, dir: { regex: "/tags$/" } }) {
+    allFile(filter: { name: { eq: $project }, dir: { regex: "/projects$/" } }) {
       edges {
         node {
           name
@@ -126,4 +124,4 @@ export const pageQuery = graphql`
   }
 `;
 
-export default TagPage;
+export default ProjectPage;

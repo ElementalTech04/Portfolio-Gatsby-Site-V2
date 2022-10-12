@@ -2,18 +2,18 @@ import React from 'react';
 import { Link } from 'gatsby';
 import Config from '../../../config';
 import Utils from '../../utils/pageUtils';
-import style from './tags.module.less';
+import style from './projects.module.less';
 
-const TagCard = (props) => {
+const ProjectCard = (props) => {
   const {
     img, name, description, color,
   } = props;
-  const tagPage = Config.pages.tag;
+  const projectPage = Config.pages.project;
   return (
-    <Link className={style.tagCard} to={Utils.resolvePageUrl(tagPage, name)}>
-      <div className={style.tagCard}>
+    <Link className={style.projectCard} to={Utils.resolvePageUrl(projectPage, name)}>
+      <div className={style.projectCard}>
         <div
-          className={style.tagImg}
+          className={style.projectImg}
           style={{
             backgroundImage: `url(${img})`,
           }}
@@ -34,4 +34,4 @@ const TagCard = (props) => {
   );
 };
 
-export default TagCard;
+export default ProjectCard;
