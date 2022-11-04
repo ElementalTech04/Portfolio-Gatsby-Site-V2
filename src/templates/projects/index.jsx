@@ -17,47 +17,47 @@ import Utils from '../../utils/pageUtils';
 import style from './projects.module.less';
 
 const ProjectPage = ({ data, pageContext }) => {
-  // const { project } = pageContext;
-  // const projectName = Config.projects[project].name || Utils.capitalize(project);
-  // const projectPagePath = Config.pages.project;
-  // const projectImage = data.allFile.edges.find((edge) => edge.node.name === project).node
-  //   .childImageSharp.fluid;
-  // const posts = data.allMarkdownRemark.edges;
-  // return (
-  //   <Layout className="outerPadding">
-  //     <Layout className="container">
-  //       <Header />
-  //       <SEO
-  //         title={projectName}
-  //         description={`All post about ${projectName}. ${Config.projects[project].description} `}
-  //         path={Utils.resolvePageUrl(projectPagePath, project)}
-  //         keywords={[projectName]}
-  //       />
-  //       <SidebarWrapper>
-  //         <div className={`marginTopTitle ${style.projectsList}`}>
-  //           <h1>
-  //             #
-  //             {projectName}
-  //           </h1>
-  //           <div className={style.bannerImgContainer}>
-  //             <Img className={style.bannerImg} fluid={projectImage} alt={projectName} />
-  //           </div>
-  //           <h4 className="textCenter">
-  //             {Config.projects[project].description}
-  //           </h4>
-  //         </div>
-  //         <Row gutter={[20, 20]}>
-  //           {posts.map((post, key) => (
-  //           // eslint-disable-next-line react/no-array-index-key
-  //             <Col key={key} xs={24} sm={24} md={12} lg={8}>
-  //               <PostCard data={post} />
-  //             </Col>
-  //           ))}
-  //         </Row>
-  //       </SidebarWrapper>
-  //     </Layout>
-  //   </Layout>
-  // );
+  const { project } = pageContext;
+  const projectName = Config.projects[project].name || Utils.capitalize(project);
+  const projectPagePath = Config.pages.project;
+  const projectImage = data.allFile.edges.find((edge) => edge.node.name === project).node
+    .childImageSharp.fluid;
+  const posts = data.allMarkdownRemark.edges;
+  return (
+    <Layout className="outerPadding">
+      <Layout className="container">
+        <Header />
+        <SEO
+          title={projectName}
+          description={`All post about ${projectName}. ${Config.projects[project].description} `}
+          path={Utils.resolvePageUrl(projectPagePath, project)}
+          keywords={[projectName]}
+        />
+        <SidebarWrapper>
+          <div className={`marginTopTitle ${style.projectsList}`}>
+            <h1>
+              #
+              {projectName}
+            </h1>
+            <div className={style.bannerImgContainer}>
+              <Img className={style.bannerImg} fluid={projectImage} alt={projectName} />
+            </div>
+            <h4 className="textCenter">
+              {Config.projects[project].description}
+            </h4>
+          </div>
+          <Row gutter={[20, 20]}>
+            {posts.map((post, key) => (
+            // eslint-disable-next-line react/no-array-index-key
+              <Col key={key} xs={24} sm={24} md={12} lg={8}>
+                <PostCard data={post} />
+              </Col>
+            ))}
+          </Row>
+        </SidebarWrapper>
+      </Layout>
+    </Layout>
+  );
 };
 
 ProjectPage.propTypes = {
@@ -89,13 +89,12 @@ export const pageQuery = graphql`
       filter: {
         fileAbsolutePath: { regex: "/index.md$/" }
       }
-      sort: { fields: [frontmatter___date], order: DESC }
+      sort: { fields: [frontmatter___title], order: DESC }
     ) {
       edges {
         node {
           frontmatter {
             title
-            date(formatString: "MMMM DD, YYYY")
             path
             excerpt
             cover {
