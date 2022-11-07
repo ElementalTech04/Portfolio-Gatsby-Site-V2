@@ -57,6 +57,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         path
+        id
         excerpt
         cover {
           childImageSharp {
@@ -79,6 +80,7 @@ export const pageQuery = graphql`
             path
             title
             excerpt
+            id
             cover {
               childImageSharp {
                 fluid(maxWidth: 600) {

@@ -12,17 +12,7 @@ import ProjectCard from '../../components/ProjectCard';
 import Config from '../../../config';
 
 const Projects = ({ data }) => {
-  console.log(data)
-  const { allFile: { edges } } = data;
-  const rawProjects = data.allMarkdownRemark.edges
-    .map((edge) => edge.node.frontmatter.title)
-    .reduce((prev, curr) => prev.concat(curr));
-  rawProjects
-    .filter((title, index) => index === rawProjects.indexOf(title))
-    .sort(); // Remove duplicates and sort values
-  const projectPage = Config.pages.project;
-  const projectData = Config.projects;
-  console.log(edges);
+  const { allMarkdownRemark: { edges } } = data;
   return (
     <Layout className="outerPadding">
       <Layout className="container">
@@ -39,13 +29,12 @@ const Projects = ({ data }) => {
             </div>
             <Row gutter={[30, 20]}>
               {
-                projectData.map((value) => (
-                  <Col key={value.node.name} xs={24} sm={24} md={12} lg={8}>
+                edges.map((value) => (
+                  <Col key={value.node.id} xs={24} sm={24} md={12} lg={8}>
                     <ProjectCard
-                      img={value.src}
-                      name={value.name}
-                      description={value.description}
-                      color={value.color}
+                      img={value.node.frontmatter.cover.childImageSharp.fluid.src}
+                      name={value.node.frontmatter.title}
+                      description={value.node.frontmatter.excerpt}
                     />
                   </Col>
                 ))
@@ -97,6 +86,7 @@ export const pageQuery = graphql`
             title
             path
             excerpt
+            id
             cover {
               childImageSharp {
                 fluid(maxWidth: 600) {

@@ -97,6 +97,7 @@ export const pageQuery = graphql`
             title
             path
             excerpt
+            id
             cover {
               childImageSharp {
                 fluid(maxWidth: 600) {

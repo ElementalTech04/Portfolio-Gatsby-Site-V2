@@ -14,7 +14,7 @@ exports.createPages = ({ actions, graphql }) => {
           node {
             frontmatter {
               path
-              projects
+              title
             }
             fileAbsolutePath
           }
@@ -26,10 +26,10 @@ exports.createPages = ({ actions, graphql }) => {
 
     const { allMarkdownRemark } = result.data;
 
-    /* Post pages */
+    /* Project pages */
     allMarkdownRemark.edges.forEach(({ node }) => {
       // Check path prefix of post
-      if (node.frontmatter.path.indexOf(config.pages.blog) !== 0) {
+      if (node.frontmatter.path.indexOf(config.pages.project) !== 0) {
         // eslint-disable-next-line no-throw-literal
         throw `Invalid path prefix: ${node.frontmatter.path}`;
       }
@@ -51,8 +51,8 @@ exports.createPages = ({ actions, graphql }) => {
     /* project pages */
     const allProjects = [];
     defaultPosts.forEach(({ node }) => {
-      node.frontmatter.projects.forEach((project) => {
-        if (allProjects.indexOf(project) === -1) allProjects.push(project);
+      node.frontmatter.title.forEach((title) => {
+        if (allProjects.indexOf(title) === -1) allProjects.push(title);
       });
     });
 

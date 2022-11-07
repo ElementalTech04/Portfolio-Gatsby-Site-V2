@@ -41,8 +41,8 @@ const Utils = {
     // Get the number of common projects with provided post.
     const getProjectScore = (edge) => {
       let commonProjects = 0;
-      edge.node.frontmatter.projects.forEach((project) => {
-        commonProjects += post.frontmatter.projects.indexOf(project) !== -1 ? 1 : 0;
+      edge.node.frontmatter.title.forEach((title) => {
+        commonProjects += post.frontmatter.title.indexOf(title) !== -1 ? 1 : 0;
       });
       return commonProjects;
     };

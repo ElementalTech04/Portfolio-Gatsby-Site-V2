@@ -6,8 +6,9 @@ import style from './projects.module.less';
 
 const ProjectCard = (props) => {
   const {
-    img, name, description, color,
+    img, name, description,
   } = props;
+  console.log(img);
   const projectPage = Config.pages.project;
   return (
     <Link className={style.projectCard} to={Utils.resolvePageUrl(projectPage, name)}>
@@ -20,7 +21,7 @@ const ProjectCard = (props) => {
         />
         <div className={style.pd20px}>
           <div className="textCenter">
-            <h4 style={{ color: `${color}` }}>
+            <h4 style={{ color: `blue` }}>
               #
               {name}
             </h4>
