@@ -14,6 +14,7 @@ import './highlight-syntax.less';
 import style from './post.module.less';
 
 const Post = ({ data }) => {
+  console.log(data)
   const { html, frontmatter } = data.markdownRemark;
   const {
     title, cover: { childImageSharp: { fluid } }, excerpt, path,

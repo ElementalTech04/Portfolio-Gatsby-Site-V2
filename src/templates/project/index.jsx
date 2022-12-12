@@ -15,44 +15,55 @@ import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import Config from '../../../config';
 import Utils from '../../utils/pageUtils';
 import style from './projects.module.less';
+import { useState, useEffect } from 'react';
+import { useHashNodePosts } from '../../utils/hooks';
 
-const ProjectPage = ({ data, pageContext }) => {
-  const { project } = pageContext;
-  const projectName = Config.projects[project].name || Utils.capitalize(project);
-  const projectPagePath = Config.pages.project;
-  const projectImage = data.allFile.edges.find((edge) => edge.node.name === project).node
-    .childImageSharp.fluid;
-  const posts = data.allMarkdownRemark.edges;
+const ProjectPage = ({ pageContext, path }) => {
+  const [posts, setPosts] = useState([]);
+  const [projectName, setProjectName] = useState(pageContext.name);
+  const [projectPagePath, setProjectPagePath] = useState(path);
+  const [projectImage, setProjectImage] = useState(pageContext.img);
+  const [projectExcerpt, setProjectExcerpt] = useState(pageContext.excerpt);
+  let promisedData = useHashNodePosts(hashNodeQuery, []);
+  useEffect(() => {
+  promisedData.then(resp => {
+    setPosts(resp)
+  }).catch(err => console.error(err));
+  }, [promisedData]);
+console.log(projectImage)
   return (
     <Layout className="outerPadding">
       <Layout className="container">
         <Header />
         <SEO
           title={projectName}
-          description={`All post about ${projectName}. ${Config.projects[project].description} `}
-          path={Utils.resolvePageUrl(projectPagePath, project)}
+          description={`All post about ${projectName}. project.description} `}
+          path={Utils.resolvePageUrl(projectPagePath)}
           keywords={[projectName]}
         />
         <SidebarWrapper>
           <div className={`marginTopTitle ${style.projectsList}`}>
             <h1>
-              #
+              
               {projectName}
             </h1>
             <div className={style.bannerImgContainer}>
-              <Img className={style.bannerImg} fluid={projectImage} alt={projectName} />
+              <Img
+              fluid={projectImage}
+              alt={projectName}
+            />
             </div>
             <h4 className="textCenter">
-              {Config.projects[project].description}
+              {projectExcerpt}
             </h4>
           </div>
           <Row gutter={[20, 20]}>
-            {posts.map((post, key) => (
+            {posts.length > 0 ? posts.map((post, key) => (
             // eslint-disable-next-line react/no-array-index-key
               <Col key={key} xs={24} sm={24} md={12} lg={8}>
                 <PostCard data={post} />
               </Col>
-            ))}
+            )): null}
           </Row>
         </SidebarWrapper>
       </Layout>
@@ -109,7 +120,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allFile(filter: { name: { eq: $project }, dir: { regex: "/projects$/" } }) {
+    allFile(filter: { dir: { eq: $project } }) {
       edges {
         node {
           name
@@ -123,5 +134,20 @@ export const pageQuery = graphql`
     }
   }
 `;
+
+export const hashNodeQuery = `query {
+  user(username: "travistech04") {
+    publication {
+      posts(page: 0) {
+        title
+        coverImage
+        dateAdded
+        totalReactions
+        brief
+        slug
+      }
+    }
+  }
+}`;
 
 export default ProjectPage;

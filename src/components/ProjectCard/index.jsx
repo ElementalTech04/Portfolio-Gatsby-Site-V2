@@ -6,12 +6,11 @@ import style from './projects.module.less';
 
 const ProjectCard = (props) => {
   const {
-    img, name, description,
+    path, img, name, description,
   } = props;
-  console.log(img);
   const projectPage = Config.pages.project;
   return (
-    <Link className={style.projectCard} to={Utils.resolvePageUrl(projectPage, name)}>
+    <Link className={style.projectCard} to={Utils.resolvePageUrl(path)}>
       <div className={style.projectCard}>
         <div
           className={style.projectImg}

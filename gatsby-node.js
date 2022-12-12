@@ -15,6 +15,9 @@ exports.createPages = ({ actions, graphql }) => {
             frontmatter {
               path
               title
+              cover {
+                absolutePath
+              }
             }
             fileAbsolutePath
           }
@@ -36,8 +39,10 @@ exports.createPages = ({ actions, graphql }) => {
 
       createPage({
         path: node.frontmatter.path,
-        component: path.resolve('src/templates/post/post.jsx'),
+        component: path.resolve('src/templates/project/index.jsx'),
         context: {
+          name: node.frontmatter.title,
+          img: node.frontmatter.cover.absolutePath,
           postPath: node.frontmatter.path,
           translations: utils.getRelatedTranslations(node, allMarkdownRemark.edges),
         },
@@ -47,23 +52,29 @@ exports.createPages = ({ actions, graphql }) => {
     // Posts in default language, excluded the translated versions
     const defaultPosts = allMarkdownRemark.edges
       .filter(({ node: { fileAbsolutePath } }) => fileAbsolutePath.match(regexForIndex));
-
+      console.log(JSON.stringify(defaultPosts))
     /* project pages */
-    const allProjects = [];
+    const allPosts = [];
     defaultPosts.forEach(({ node }) => {
-      node.frontmatter.title.forEach((title) => {
-        if (allProjects.indexOf(title) === -1) allProjects.push(title);
-      });
+      
+      if(allPosts.length == 0){
+        allPosts.push(node)
+      } else {
+        allPosts.forEach((project) => {
+          if(project.fileAbsolutePath.match((node.fileAbsolutePath) === -1)) allPosts.push(node);
+        });
+      }
     });
-
-    allProjects
+    console.log(JSON.stringify(allPosts))
+    allPosts
       .forEach((project) => {
         createPage({
-          path: utils.resolvePageUrl(config.pages.project, project),
-          component: path.resolve('src/templates/projects/index.jsx'),
+          path: utils.resolvePageUrl(project.frontmatter.path),
+          component: path.resolve('src/templates/project/index.jsx'),
           context: {
-            project,
-          },
+            project: project.fileAbsolutePath,
+            projectSlug: project.frontmatter.path
+          }
         });
       });
 

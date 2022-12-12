@@ -5,23 +5,22 @@ import style from './postCard.module.less';
 import Utils from '../../utils/pageUtils';
 
 const PostCard = (props) => {
-  const { data: { node: { frontmatter } } } = props;
-
+  
   return (
     <div className={style.postCard}>
-      <Link to={Utils.resolvePageUrl(frontmatter.path)}>
+      <Link to={Utils.resolvePageUrl(props.data.slug)}>
         <div
           className={style.postCardImg}
           style={{
-            backgroundImage: `url(${frontmatter ? frontmatter.cover.childImageSharp.fluid.src : ''})`,
+            backgroundImage: `url(${props.data ? props.data.coverImage : ''})`,
           }}
         />
         <div className={style.mrTp20}>
           <p>
             {/* <span className={style.dateHolder}>{frontmatter ? moment(frontmatter.date).format('MMM Do YYYY') : ''}</span> */}
           </p>
-          <h3>{frontmatter ? frontmatter.title : ''}</h3>
-          <p>{frontmatter ? frontmatter.excerpt : ''}</p>
+          <h3>{props.data ? props.data.title : ''}</h3>
+          <p>{props.data ? props.data.breif : ''}</p>
           <p style={{ color: '#ce6d96', wordSpacing: '10px' }}>
             
           </p>

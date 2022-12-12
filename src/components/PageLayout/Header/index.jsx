@@ -42,9 +42,9 @@ export default () => {
               </Link>
             </li>
             <li className={style.navItem}>
-              <Link to="https://travistech.hashnode.dev/" onClick={toggleMenu} activeClassName={style.anchorActive}>
+              <a href="https://travistech.hashnode.dev/" target="_blank" activeClassName={style.anchorActive}>
                 Blog
-              </Link>
+              </a>
             </li>
             <li className={style.navItem}>
               <Link to="/projects" onClick={toggleMenu} activeClassName={style.anchorActive}>
@@ -52,9 +52,9 @@ export default () => {
               </Link>
             </li>
             <li className={style.navItem}>
-              <Link to="/resume" onClick={toggleMenu} activeClassName={style.anchorActive}>
+              <a href="/resume" target="_blank" activeClassName={style.anchorActive}>
                 Resume
-              </Link>
+              </a>
             </li>
           </ul>
         </div>

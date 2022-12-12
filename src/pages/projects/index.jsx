@@ -11,8 +11,11 @@ import SidebarWrapper from '../../components/PageLayout/Sidebar';
 import ProjectCard from '../../components/ProjectCard';
 import Config from '../../../config';
 
+
 const Projects = ({ data }) => {
   const { allMarkdownRemark: { edges } } = data;
+console.log(edges)
+
   return (
     <Layout className="outerPadding">
       <Layout className="container">
@@ -29,9 +32,10 @@ const Projects = ({ data }) => {
             </div>
             <Row gutter={[30, 20]}>
               {
-                edges.map((value) => (
+                edges.map((value, idx) => (
                   <Col key={value.node.id} xs={24} sm={24} md={12} lg={8}>
                     <ProjectCard
+                      path={value.node.frontmatter.path}
                       img={value.node.frontmatter.cover.childImageSharp.fluid.src}
                       name={value.node.frontmatter.title}
                       description={value.node.frontmatter.excerpt}
@@ -54,7 +58,7 @@ Projects.propTypes = {
         PropTypes.shape({
           node: PropTypes.shape({
             frontmatter: PropTypes.shape({
-              projects: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+              id: PropTypes.string.isRequired,
             }).isRequired,
           }).isRequired,
         }).isRequired,
