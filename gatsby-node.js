@@ -44,6 +44,8 @@ exports.createPages = ({ actions, graphql }) => {
           name: node.frontmatter.title,
           img: node.frontmatter.cover.absolutePath,
           postPath: node.frontmatter.path,
+          project: node.fileAbsolutePath,
+          projectSlug: node.frontmatter.path,
           translations: utils.getRelatedTranslations(node, allMarkdownRemark.edges),
         },
       });
