@@ -24,6 +24,7 @@ const ProjectPage = ({ pageContext, path }) => {
   const [projectPagePath, setProjectPagePath] = useState(path);
   const [projectImage, setProjectImage] = useState(pageContext.img);
   const [projectExcerpt, setProjectExcerpt] = useState(pageContext.excerpt);
+  const [hashNodeQuery, setHashNodeQuery] = useState()
   let promisedData = useHashNodePosts(hashNodeQuery, []);
   useEffect(() => {
   promisedData.then(resp => {
@@ -63,7 +64,8 @@ console.log(projectImage)
               <Col key={key} xs={24} sm={24} md={12} lg={8}>
                 <PostCard data={post} />
               </Col>
-            )): null}
+
+            )): <h1>No Posts Yet</h1>}
           </Row>
         </SidebarWrapper>
       </Layout>
