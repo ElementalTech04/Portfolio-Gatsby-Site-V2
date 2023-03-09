@@ -2,7 +2,7 @@
 title: "Developer Site"
 path: projects/portfolio
 cover: ./port.png
-id: port-gatsby
+id: elemental-port-gatsby
 excerpt: This very site here :)
 ---
 

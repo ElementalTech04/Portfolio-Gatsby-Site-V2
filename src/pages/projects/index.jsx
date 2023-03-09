@@ -38,6 +38,7 @@ console.log(edges)
                       path={value.node.frontmatter.path}
                       img={value.node.frontmatter.cover.childImageSharp.fluid.src}
                       name={value.node.frontmatter.title}
+                      id={value.node.frontmatter.id}
                       description={value.node.frontmatter.excerpt}
                     />
                   </Col>

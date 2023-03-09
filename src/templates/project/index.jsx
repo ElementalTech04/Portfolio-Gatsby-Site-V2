@@ -23,9 +23,10 @@ const ProjectPage = ({ pageContext, path }) => {
   const [projectName, setProjectName] = useState(pageContext.name);
   const [projectPagePath, setProjectPagePath] = useState(path);
   const [projectImage, setProjectImage] = useState(pageContext.img);
+  const [projectId, setProjectId] = useState(pageContext.id);
   const [projectExcerpt, setProjectExcerpt] = useState(pageContext.excerpt);
   const [hashNodeQuery, setHashNodeQuery] = useState()
-  let promisedData = useHashNodePosts(hashNodeQuery, []);
+  let promisedData = useHashNodePosts(projectId, 0);
   useEffect(() => {
   promisedData.then(resp => {
     setPosts(resp)

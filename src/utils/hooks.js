@@ -21,12 +21,9 @@ export const useWindowSize = () => {
 };
 
 
-export const useHashNodePosts = async(_query, _variables) => {
-  const hashNodeApiUrl = process.env.GATSBY_HASHNODE_API_URL;
-  const response = await axios.post(hashNodeApiUrl, {
-    query: `${_query}`,
-    variables: _variables
-  },{headers: {
+export const useHashNodePosts = async(_tag, _page) => {
+  const hashNodeApiUrl = process.env.GATSBY_HASHNODE_API_URL + _tag + '/' + _page;
+  const response = await axios.get(hashNodeApiUrl,{headers: {
       'Authorization': `${process.env.GATSBY_HASHNODE_API_KEY}`,
       'Content-Type': 'application/json',
     }});
