@@ -24,7 +24,7 @@ export const useWindowSize = () => {
 export const useHashNodePosts = async(_tag, _page) => {
   const hashNodeApiUrl = process.env.GATSBY_HASHNODE_API_URL + _tag + '/' + _page;
   const response = await axios.get(hashNodeApiUrl,{headers: {
-      'Authorization': `${process.env.GATSBY_HASHNODE_API_KEY}`,
+      'X-API-Key': `${process.env.GATSBY_HASHNODE_API_KEY}`,
       'Content-Type': 'application/json',
     }});
   return response.status == 200 ? response.data.data.user.publication.posts : [];
