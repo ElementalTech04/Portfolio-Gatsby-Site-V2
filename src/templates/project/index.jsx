@@ -46,7 +46,6 @@ console.log(projectImage)
         <SidebarWrapper>
           <div className={`marginTopTitle ${style.projectsList}`}>
             <h1>
-              
               {projectName}
             </h1>
             <div className={style.bannerImgContainer}>
