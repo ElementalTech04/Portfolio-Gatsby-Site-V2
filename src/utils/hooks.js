@@ -27,5 +27,5 @@ export const useHashNodePosts = async(_tag, _page) => {
       'X-API-Key': `${process.env.GATSBY_HASHNODE_API_KEY}`,
       'Content-Type': 'application/json',
     }});
-  return response.status == 200 ? response.data.data.user.publication.posts : [];
+  return response.status === 200 ? response.data.data.user.publication.posts : [];
 };
