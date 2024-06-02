@@ -1,34 +1,29 @@
 import React, { useState } from 'react';
 import { Link } from 'gatsby';
-import { Layout } from 'antd';
-import 'font-awesome/less/font-awesome.less';
-import style from './header.module.less';
-import '../../../styles/global.less';
+import style from './header.module.less'; // Ensure this path is correct
+import '../../../styles/global.less'; // Ensure this path is correct
 import { useWindowSize } from '../../../utils/hooks';
 
-export default () => {
+const Header = () => {
   const [menu, setMenu] = useState(false);
-
   const [width] = useWindowSize();
+
   const toggleMenu = () => {
     if (width !== 0 && width <= 768) {
-      if (menu) {
-        setMenu(false);
-      } else {
-        setMenu(true);
-      }
+      setMenu(!menu);
     }
   };
+
   return (
     <>
       <div className={style.circleMenu} role="button" tabIndex="0" onKeyDown={toggleMenu} onClick={toggleMenu}>
-        <div className={`${style.hamburger} ${menu ? style.menuIcon : null}`}>
+        <div className={`${style.hamburger} ${menu ? style.menuIcon : ''}`}>
           <div className={style.line} />
           <div className={style.line} />
           <div className={style.hamburgerText}>MENU</div>
         </div>
       </div>
-      <Layout className={`${style.navWrap} ${menu ? null : style.hidden} ${menu ? style.openMenu : null}`}>
+      <div className={`${style.navWrap} ${menu ? '' : style.hidden} ${menu ? style.openMenu : ''}`}>
         <div className={style.backgroundDiv}>
           <ul className={style.nav}>
             <li className={style.navItem}>
@@ -58,7 +53,9 @@ export default () => {
             </li>
           </ul>
         </div>
-      </Layout>
+      </div>
     </>
   );
 };
+
+export default Header;
