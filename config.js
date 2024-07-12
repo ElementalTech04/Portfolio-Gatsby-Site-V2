@@ -14,9 +14,9 @@ module.exports = {
     project: 'projects',
   },
   social: {
-    github: 'https://github.com/travistech04',
-    linkedin: 'https://www.linkedin.com/in/frankierodriguezjr/',
-    business: 'https://www.scriptcasters.com',
+    github: 'https://github.com/ElementalTech04',
+    linkedin: 'http://www.linkedin.com/in/frankierodriguezjr/',
+    business: 'http://www.scriptcasters.com',
     rss: '/rss.xml',
   },
   contactFormUrl: process.env.CONTACT_FORM_ENDPOINT || 'https://getform.io/f/09a3066f-c638-40db-ad59-05e4ed71e451',

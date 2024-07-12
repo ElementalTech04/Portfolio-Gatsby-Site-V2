@@ -31,7 +31,7 @@ const DomContent = () => (
       <div className="centerAlign box">
         <a href={linkedin} target="_blank" label="button" rel="noopener noreferrer"><FA name="linkedin" /></a>
         <a href={github} target="_blank" label="button" rel="noopener noreferrer"><FA name="github" /></a>
-        <a href={business} target="_blank" label="button" rel="noopener noreferrer"><FA name="user-tie" /></a>
+        {/*<a href={business} target="_blank" label="button" rel="noopener noreferrer"><FA name="user-tie" /></a>*/}
       </div>
       <ul className={`box ${style.badge} contactBlock`}>
         <li className={`${style.contactBlockItem}`}>
@@ -44,17 +44,17 @@ const DomContent = () => (
         <li className={`${style.contactBlockItem}`}>
           <span><FeatherIcon size="19" icon="map-pin" /></span>
           {' '}
-&nbsp; &nbsp; Philadephia, USA
+&nbsp; &nbsp; Philadelphia, USA
         </li>
         <li className={`${style.contactBlockItem}`}>
           <span><FeatherIcon size="19" icon="mail" /></span>
           {' '}
 &nbsp; &nbsp;
           <a
-            href="mailto:&#114;&#102;&#114;&#097;&#110;&#107;&#105;&#101;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;"
+            href="mailto:&#102;&#114;&#046;&#100;&#101;&#118;&#101;&#108;&#111;&#112;&#109;&#101;&#110;&#116;&#064;&#103;&#109;&#097;&#105;&#108;&#046;&#099;&#111;&#109;"
             target="_top"
           >
-            <span className={style.emailHider}>@</span>
+            <span className={style.emailHider}>fr.development@gmail.com</span>
           </a>
         </li>
       </ul>
