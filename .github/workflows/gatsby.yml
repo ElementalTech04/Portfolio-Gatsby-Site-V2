@@ -82,6 +82,8 @@ jobs:
           GATSBY_HASHNODE_API_URL: ${{ secrets.GATSBY_HASHNODE_API_URL }}
           GATSBY_HASHNODE_API_KEY: ${{ secrets.GATSBY_HASHNODE_API_KEY }}
         run: ${{ steps.detect-package-manager.outputs.manager }} run build
+      - name: Print Environment Variables
+        run: env
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
