@@ -21,7 +21,9 @@ export default () => {
       }
     }
 
-    fetch(Config.contactFormUrl, { method: 'POST', body: formData })
+    fetch(Config.contactFormUrl, { method: 'POST', body: formData,  headers: {
+        "Accept": "application/json",
+      }})
       .then(() => {
         message.success('Thank you for your kind response 🙂. Will get back to you.');
         form.resetFields();
